@@ -1,4 +1,3 @@
-KungProdakIndo:~$ cat Doc*
 # We're using Alpine Edge
 FROM alpine:edge
 
