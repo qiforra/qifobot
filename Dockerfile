@@ -64,9 +64,14 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b master https://github.com/qiforra/qifobot /home/projectbish/
-RUN mkdir /home/projectbish/bin/
-WORKDIR /home/projectbish/
+RUN git clone -b https://github.com/qiforra/qifobot /root/userbot
+RUN mkdir /root/userbot/bin/
+WORKDIR /root/userbot/
+
+#
+# Copies session and config (if it exists)
+#
+COPY ./sample_config.env ./userbot.session* ./config.env* /root/userbot/
 
 #
 # Install requirements
