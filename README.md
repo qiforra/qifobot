@@ -1,4 +1,4 @@
-[![Build](https://github.com/MoveAngel/One4uBot/workflows/FailedChecker/badge.svg?branch=sql-extended)](https://github.com/MoveAngel/One4uBot/actions "Build")
+[![Build](https://github.com/MoveAngel/One4uBot/workflows/FailedChecker/badge.svg?branch=sql-extended)](https://github.com/MoveAngel/One4uBot/actions "Build") | <a class="github-button" href="https://github.com/MoveAngel/One4uBot/fork" data-color-scheme="no-preference: light; light: dark; dark: light;" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork MoveAngel/One4uBot on GitHub">Fork</a> | <a class="github-button" href="https://github.com/MoveAngel/One4uBot" data-color-scheme="no-preference: light; light: dark; dark: light;" data-icon="octicon-star" data-show-count="true" aria-label="Star MoveAngel/One4uBot on GitHub">Star</a>
 
 # One4uBot userbot project
 
