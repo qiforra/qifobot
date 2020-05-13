@@ -7,7 +7,7 @@
 """ Userbot module for other small commands. """
 
 from random import randint
-from asyncio import sleep
+from time import sleep
 from os import execl
 import sys
 import os
@@ -16,6 +16,7 @@ import sys
 import json
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
+from userbot.utils import time_formatter
 
 
 @register(outgoing=True, pattern="^.random")
@@ -32,23 +33,19 @@ async def randomise(items):
                      itemo[index] + "`")
 
 
-@register(outgoing=True, pattern="^.sleep( [0-9]+)?$")
+@register(outgoing=True, pattern="^.sleep ([0-9]+)$")
 async def sleepybot(time):
     """ For .sleep command, let the userbot snooze for a few second. """
-    message = time.text
-    if " " not in time.pattern_match.group(1):
-        await time.reply("Syntax: `.sleep [seconds]`")
-    else:
-        counter = int(time.pattern_match.group(1))
-        await time.edit("`I am sulking and snoozing....`")
-        await sleep(2)
-        if BOTLOG:
-            await time.client.send_message(
-                BOTLOG_CHATID,
-                "You put the bot to sleep for " + str(counter) + " seconds",
-            )
-        await sleep(counter)
-        await time.edit("`OK, I'm awake now.`")
+    counter = int(time.pattern_match.group(1))
+    await time.edit("`I am sulking and snoozing...`")
+    if BOTLOG:
+        str_counter = time_formatter(counter)
+        await time.client.send_message(
+            BOTLOG_CHATID,
+            f"You put the bot to sleep for {str_counter}.",
+        )
+    sleep(counter)
+    await time.edit("`OK, I'm awake now.`")
 
 
 @register(outgoing=True, pattern="^.shutdown$")
@@ -78,7 +75,7 @@ async def killdabot(event):
 async def bot_community(community):
     """ For .community command, just returns OG Paperplane's group link. """
     await community.edit(
-        "Join RaphielGang's awesome userbot community: @userbot_support"
+        "Join RaphielGang's awesome userbot community: @tgpaperplane"
         "\nDo note that Paperplane Extended is an unoficial fork of their "
         "Paperplane project and it may get limited or no support for bugs.")
 
@@ -87,16 +84,16 @@ async def bot_community(community):
 async def bot_support(wannahelp):
     """ For .support command, just returns the group link. """
     await wannahelp.edit(
-        "Join the OpenUserBot Channel: @PaperPlaneExtended_news \
-        \nJoin the Community Userbot Indo Chat: @userbotindo")
+        "Join Our UserbotIndo Channel: @userbotindocloud \
+        \nJoin Userbot Indo Support Group: @userbotindo")
 
-@register(outgoing=True, pattern="^.contributor$")
-async def contributor(e):
-    await e.edit("[MoveAngel](https://t.me/MoveAngel)")
 
 @register(outgoing=True, pattern="^.creator$")
-async def creator(e):
-    await e.edit("[TeKnoways](https://t.me/Three_Cube_TeKnoways)")
+async def creator(ereee):
+    """ See who create this userbot. """
+    await ereee.edit(
+        "Creator of this userbot:"
+        "\n• 💘 [MoveAngel](https://github.com/MoveAngel) 💘")
 
 
 @register(outgoing=True, pattern="^.readme$")

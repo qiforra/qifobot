@@ -39,7 +39,7 @@ from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
-from userbot.modules.upload_download import progress, humanbytes, time_formatter
+from userbot.utils import progress, humanbytes, time_formatter
 from userbot.utils.google_images_download import googleimagesdownload
 
 CARBONLANG = "auto"
@@ -132,7 +132,7 @@ async def img_sampler(event):
         lim = lim.replace("lim=", "")
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
-        lim = 6
+        lim = 7
     response = googleimagesdownload()
 
     # creating list of arguments
