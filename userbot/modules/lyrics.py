@@ -8,7 +8,7 @@ import os
 import lyricsgenius
 
 from userbot.events import register
-from userbot import (CMD_HELP, GENIUS, lastfm, LASTFM_USERNAME)
+from userbot import CMD_HELP, GENIUS, lastfm, LASTFM_USERNAME
 from pylast import User
 
 if GENIUS is not None:
@@ -64,8 +64,8 @@ async def lyrics(lyric):
 
 CMD_HELP.update({
     "lyrics":
-    ".lyrics **<artist name> - <song name>**"
-    "\nUsage: Get lyrics matched artist and song."
-    "\n\n.lyrics now"
-    "\nUsage: Get lyrics artist and song from current lastfm scrobbling."
-})
+        ".lyrics **<artist name> - <song name>**"
+        "\nUsage: Get lyrics matched artist and song."
+        "\n\n.lyrics now"
+        "\nUsage: Get lyrics artist and song from current lastfm scrobbling."
+    })
