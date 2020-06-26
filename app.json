@@ -41,7 +41,8 @@
     },
     "GITHUB_ACCESS_TOKEN": {
       "description": "Your GITHUB_ACCESS_TOKEN, get it from 'https://github.com/settings/tokens'",
-      "value": ""
+      "value": "",
+      "required": false
     },
     "GIT_REPO_NAME": {
       "description": "Add the GIT_REPO_NAME here. It helps with commit on GitHub.",
@@ -64,11 +65,6 @@
       "value": "1",
       "required": false
     },
-    "TELEGRAPH_SHORT_NAME": {
-      "description": "Fill the value up to you.",
-      "value": "Userbot",
-      "required": true
-    },
     "CHROME_DRIVER": {
       "description": "ChromeDriver location for selenium based modules.",
       "value": "/usr/bin/chromedriver",
@@ -90,6 +86,11 @@
     "BOTLOG": {
       "description": "Incase you want to turn off logging, put this to false",
       "value": "False"
+    },
+    "DEEZER_ARL_TOKEN": {
+      "description": "Fill of your Deezer ARL token. Get from https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken",
+      "required": false,
+      "value": ""
     },
     "BOTLOG_CHATID": {
       "description": "ChatID of the Log group. Set it to '0' if BOTLOG = False and/or if LOGSPAMMER = False.",
