@@ -104,10 +104,6 @@
       "description": "PM Auto-Ban Feature Switch. Also known as the 'bleep blop, this is a bot...' module.",
       "value": "False"
     },
-    "YOUTUBE_API_KEY": {
-      "description": "YouTube Data API Key for .yt command. Get from https://console.cloud.google.com",
-      "required": false
-    },
     "OCR_SPACE_API_KEY": {
       "description": "OCR API Key for .ocr command. Get from https://ocr.space/ocrapi",
       "required": false
@@ -130,6 +126,10 @@
     },
     "USER_TERM_ALIAS": {
       "description": "Set alias name of user for term bash command",
+      "required": false
+    },
+    "UPDATER_ALIAS": {
+      "description": "Set alias name for updater",
       "required": false
     },
     "QUOTES_API_TOKEN": {
@@ -178,7 +178,7 @@
       "required": false
     },
     "ALIVE_LOGO": {
-      "description": "Show Image/Logo in .alive message",
+      "description": "Show Image/Logo in .alive message. Fill value of image your link image, use telegra.ph / i.ibb.co to get your own image",
       "required": false
     },
     "G_DRIVE_CLIENT_SECRET": {
@@ -189,16 +189,13 @@
       "description": "Enter the Google Drive authentication data, as a JSON structure.",
       "required": false
     },
-    "LYDIA_API_KEY": {
-      "description": "This Module Needs CoffeeHouse API to work. so Join https://telegram.dog/IntellivoidDev and send #activateapi and follow instructions.",
-      "required": false
-    },
     "WEATHER_DEFCITY": {
       "description": "Set the default city for the userbot's weather module.",
       "required": false
     },
     "WEATHER_DEFLANG": {
       "description": "Set the default language for the userbot's weather module.",
+      "value": "en",
       "required": false
     },
     "LOGSPAMMER": {

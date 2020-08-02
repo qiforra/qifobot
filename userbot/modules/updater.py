@@ -15,7 +15,15 @@ import sys
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_REPO_URL, UPSTREAM_REPO_BRANCH, USER_TERM_ALIAS)
+from userbot import (
+    BOTLOG,
+    BOTLOG_CHATID,
+    CMD_HELP,
+    HEROKU_API_KEY,
+    HEROKU_APP_NAME,
+    UPSTREAM_REPO_URL,
+    UPSTREAM_REPO_BRANCH,
+    UPDATER_ALIAS)
 from userbot.events import register
 
 requirements_path = path.join(
@@ -103,9 +111,9 @@ async def update(event, repo, ups_rem, ac_br):
                      'Bot is restarting... Wait for a second!`')
 
     if BOTLOG:
-            await event.client.send_message(
-                BOTLOG_CHATID, "#UPDATE \n"
-                "Your One4uBot was successfully updated")
+        await event.client.send_message(
+            BOTLOG_CHATID, "#UPDATE \n"
+            "Your One4uBot was successfully updated")
 
     # Spin a new instance of bot
     args = [sys.executable, "-m", "userbot"]
@@ -165,7 +173,7 @@ async def upstream(event):
 
     if changelog == '' and force_update is False:
         await event.edit(
-            f'\n`{USER_TERM_ALIAS} is`  **up-to-date**  `with`  **{UPSTREAM_REPO_BRANCH}**\n')
+            f'\n`{UPDATER_ALIAS} is`  **up-to-date**  `with`  **{UPSTREAM_REPO_BRANCH}**\n')
         return repo.__del__()
 
     if conf is None and force_update is False:

@@ -9,11 +9,19 @@
    Heroku manager for your userbot
 """
 
+import codecs
 import heroku3
 import aiohttp
 import math
+import os
+import requests
 
-from userbot import (CMD_HELP, HEROKU_APP_NAME, HEROKU_API_KEY, BOTLOG, BOTLOG_CHATID)
+from userbot import (
+    CMD_HELP,
+    HEROKU_APP_NAME,
+    HEROKU_API_KEY,
+    BOTLOG,
+    BOTLOG_CHATID)
 from userbot.events import register
 
 heroku_api = "https://api.heroku.com"
@@ -134,9 +142,9 @@ async def dyno_usage(dyno):
     )
     user_id = Heroku.account().id
     headers = {
-     'User-Agent': useragent,
-     'Authorization': f'Bearer {HEROKU_API_KEY}',
-     'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
+        'User-Agent': useragent,
+        'Authorization': f'Bearer {HEROKU_API_KEY}',
+        'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
     }
     path = "/accounts/" + user_id + "/actions/get-quota"
     async with aiohttp.ClientSession() as session:
@@ -176,16 +184,37 @@ async def dyno_usage(dyno):
             AppMinutes = math.floor(AppQuotaUsed % 60)
 
             await dyno.edit(
-                 "**Dyno Usage**:\n\n"
-                 f" -> `Dyno usage for`  **{app.name}**:\n"
-                 f"     •  **{AppHours} hour(s), "
-                 f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
-                 "\n-------------------------------------------------------------\n"
-                 " -> `Dyno hours quota remaining this month`:\n"
-                 f"     •  **{hours} hour(s), {minutes} minute(s)  "
-                 f"-  {percentage}%**"
+                "**Dyno Usage**:\n\n"
+                f" -> `Dyno usage for`  **{app.name}**:\n"
+                f"     •  **{AppHours} hour(s), "
+                f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
+                "\n-------------------------------------------------------------\n"
+                " -> `Dyno hours quota remaining this month`:\n"
+                f"     •  **{hours} hour(s), {minutes} minute(s)  "
+                f"-  {percentage}%**"
             )
             return True
+
+
+@register(outgoing=True, pattern=r"^\.logs")
+async def _(dyno):
+    try:
+        Heroku = heroku3.from_key(HEROKU_API_KEY)
+        app = Heroku.app(HEROKU_APP_NAME)
+    except BaseException:
+        return await dyno.reply(
+            "`Please make sure your Heroku API Key, Your App name are configured correctly in the heroku var.`"
+        )
+    await dyno.edit("`Getting Logs....`")
+    with open("logs.txt", "w") as log:
+        log.write(app.get_log())
+    fd = codecs.open("logs.txt", "r", encoding="utf-8")
+    data = fd.read()
+    key = (requests.post("https://nekobin.com/api/documents",
+                         json={"content": data}) .json() .get("result") .get("key"))
+    url = f"https://nekobin.com/raw/{key}"
+    await dyno.edit(f"`Here the heroku logs:`\n\nPasted to: [Nekobin]({url})")
+    return os.remove("logs.txt")
 
 
 CMD_HELP.update({
@@ -201,4 +230,6 @@ CMD_HELP.update({
     "\n\n.del var <VAR>"
     "\nUsage: delete existing variable"
     "\n!!! WARNING !!!, after deleting variable the bot will restarted"
+    "\n\n`.logs`"
+    "\nUsage: Get heroku dyno logs"
 })
