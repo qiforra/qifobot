@@ -132,10 +132,6 @@
       "description": "Set alias name for updater",
       "required": false
     },
-    "QUOTES_API_TOKEN": {
-      "description": "Enhance ur text to sticker. Get your own API token from http://antiddos.systems.",
-      "required": false
-    },
     "CLEAN_WELCOME": {
       "description": "When a new person joins, the old welcome message is deleted.",
       "value": "True"
@@ -196,6 +192,10 @@
     "WEATHER_DEFLANG": {
       "description": "Set the default language for the userbot's weather module.",
       "value": "en",
+      "required": false
+    },
+    "USR_TOKEN_UPTOBOX": {
+      "description": "API for direct link uptobox, https://docs.uptobox.com/#how-to-find-my-api-token",
       "required": false
     },
     "LOGSPAMMER": {
